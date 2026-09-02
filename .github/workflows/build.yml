@@ -25,7 +25,7 @@ jobs:
           clean: true
 
       - name: Run .NET Restore to reload NuGet Packages
-        run: dotnet restore 
+        run: dotnet restore PrototextSharp.slnx
 
   build-nuget:
     runs-on: ["self-hosted", "run-${{github.run_id}}"]
