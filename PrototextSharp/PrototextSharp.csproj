@@ -6,4 +6,17 @@
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<!-- Project Documents -->
+		<None Include="..\README.md" Link="Docs\README.md" />
+		<None Include="..\Directory.Build.props" Link="Docs\Directory.Build.props" />
+		<None Include="..\Directory.Packages.props" Link="Docs\Directory.Packages.props" />
+		<None Include="..\LICENSE" Link="Docs\LICENSE" />
+
+		<!-- Workflow Scripts -->
+		<None Include="..\.github\workflows\build.yml" Link="Workflows\build.yml" />
+		<None Include="..\.github\workflows\publish.yml" Link="Workflows\publish.yml" />
+		<None Include="..\.github\workflows\test.yml" Link="Workflows\test.yml" />
+	</ItemGroup>
+
 </Project>
