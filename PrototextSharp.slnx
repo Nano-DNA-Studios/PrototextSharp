@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PrototextSharp.Tests/PrototextSharp.Tests.csproj" Id="b4878daf-06d5-4725-9f32-8e46ab322344" />
+  <Project Path="PrototextSharp/PrototextSharp.csproj" />
+</Solution>
