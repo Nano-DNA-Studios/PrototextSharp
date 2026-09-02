@@ -24,4 +24,10 @@
     <ProjectReference Include="..\PrototextSharp\PrototextSharp.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Fixtures\railway-network.prototext">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

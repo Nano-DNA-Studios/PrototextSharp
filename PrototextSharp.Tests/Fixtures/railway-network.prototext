@@ -1,0 +1,258 @@
+railway {
+  network_name: "Silver Meridian"
+  operating_region: "North Corridor"
+  dispatch_center {
+    call_sign: "MILEPOST-7"
+    control_port: 17420
+    emergency_channel: "RM-452"
+    overnight_schedule: false
+  }
+  maintenance_policy {
+    inspection_interval_hours: 720
+    spare_parts_catalog: "/opt/silver-meridian/catalog/parts.yaml"
+    incident_archive: "/opt/silver-meridian/archive/incidents.ndjson"
+  }
+}
+
+# EASTBOUND-314 (active service)
+service {
+  service_id: "EASTBOUND-314"
+  route_name: "Harbor Loop"
+  direction: DIRECTION_EAST
+  priority: 2
+  origin_station: "BRIAR-POINT"
+  destination_station: "COPPER-FALLS"
+  consist {
+    locomotive {
+      fleet_number: "M-882"
+      model: "Mistral-8"
+      traction_mode: TRACTION_ELECTRIC
+      commissioned_year: 2018
+    }
+    passenger_cars: 6
+    dining_car: true
+    accessibility_car: false
+  }
+  timetable {
+    departure_local: "06:40"
+    arrival_local: "08:15"
+    operating_days: "MONDAY,WEDNESDAY,FRIDAY"
+    stops {
+      station_code: "BRIAR-POINT"
+      platform: 2
+      dwell_minutes: 4
+    }
+    stops {
+      station_code: "LANTERN-CROSS"
+      platform: 1
+      dwell_minutes: 3
+    }
+    stops {
+      station_code: "COPPER-FALLS"
+      platform: 4
+      dwell_minutes: 0
+    }
+  }
+  telemetry {
+    gateway_address: "fd31:7c2e:9100::314"
+    sample_period_seconds: 15
+    certificate_bundle: "/opt/silver-meridian/telemetry/eastbound-314.pem"
+  }
+}
+
+# # WESTBOUND-315 (retired from the timetable)
+# service {
+#   service_id: "WESTBOUND-315"
+#   route_name: "Harbor Loop"
+#   direction: DIRECTION_WEST
+#   priority: 3
+#   origin_station: "COPPER-FALLS"
+#   destination_station: "BRIAR-POINT"
+#   consist {
+#     locomotive {
+#       fleet_number: "M-883"
+#       model: "Mistral-8"
+#       traction_mode: TRACTION_ELECTRIC
+#       commissioned_year: 2019
+#     }
+#     passenger_cars: 5
+#     dining_car: false
+#     accessibility_car: true
+#   }
+#   timetable {
+#     departure_local: "17:20"
+#     arrival_local: "18:55"
+#     operating_days: "TUESDAY,THURSDAY"
+#   }
+#   telemetry {
+#     gateway_address: "fd31:7c2e:9100::315"
+#     sample_period_seconds: 30
+#     certificate_bundle: "/opt/silver-meridian/telemetry/westbound-315.pem"
+#   }
+# }
+
+# NORTHBOUND-207
+service {
+  service_id: "NORTHBOUND-207"
+  route_name: "Quarry Branch"
+  direction: DIRECTION_NORTH
+  priority: 1
+  origin_station: "ASHEN-GATE"
+  destination_station: "MORNING-CREST"
+  consist {
+    locomotive {
+      fleet_number: "D-417"
+      model: "Drayton-4"
+      traction_mode: TRACTION_DIESEL
+      commissioned_year: 2012
+    }
+    passenger_cars: 3
+    dining_car: false
+    accessibility_car: true
+  }
+  timetable {
+    departure_local: "07:05"
+    arrival_local: "08:42"
+    operating_days: "SATURDAY,SUNDAY"
+    stops {
+      station_code: "ASHEN-GATE"
+      platform: 3
+      dwell_minutes: 5
+    }
+    stops {
+      station_code: "MORNING-CREST"
+      platform: 1
+      dwell_minutes: 0
+    }
+  }
+  telemetry {
+    gateway_address: "fd31:7c2e:9100::207"
+    sample_period_seconds: 20
+    certificate_bundle: "/opt/silver-meridian/telemetry/northbound-207.pem"
+  }
+}
+
+# SHUTTLE-099
+service {
+  service_id: "SHUTTLE-099"
+  route_name: "Foundry Shuttle"
+  direction: DIRECTION_SOUTH
+  priority: 4
+  origin_station: "COPPER-FALLS"
+  destination_station: "IRON-MEADOW"
+  consist {
+    locomotive {
+      fleet_number: "E-052"
+      model: "Ember-2"
+      traction_mode: TRACTION_BATTERY
+      commissioned_year: 2023
+    }
+    passenger_cars: 2
+    dining_car: false
+    accessibility_car: true
+  }
+  timetable {
+    departure_local: "12:30"
+    arrival_local: "12:58"
+    operating_days: "MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY"
+    stops {
+      station_code: "COPPER-FALLS"
+      platform: 6
+      dwell_minutes: 2
+    }
+    stops {
+      station_code: "IRON-MEADOW"
+      platform: 2
+      dwell_minutes: 0
+    }
+  }
+  telemetry {
+    gateway_address: "fd31:7c2e:9100::99"
+    sample_period_seconds: 10
+    certificate_bundle: "/opt/silver-meridian/telemetry/shuttle-099.pem"
+  }
+}
+
+# NIGHT-FREIGHT-441
+service {
+  service_id: "NIGHT-FREIGHT-441"
+  route_name: "River Freight Spur"
+  direction: DIRECTION_WEST
+  priority: 5
+  origin_station: "RIVER-DOCK"
+  destination_station: "ASHEN-GATE"
+  consist {
+    locomotive {
+      fleet_number: "F-611"
+      model: "Forge-6"
+      traction_mode: TRACTION_DIESEL
+      commissioned_year: 2016
+    }
+    passenger_cars: 0
+    dining_car: false
+    accessibility_car: false
+  }
+  timetable {
+    departure_local: "23:10"
+    arrival_local: "01:35"
+    operating_days: "SUNDAY,MONDAY,WEDNESDAY,FRIDAY"
+    operator_notes {}
+    stops {
+      station_code: "RIVER-DOCK"
+      platform: 8
+      dwell_minutes: 7
+    }
+    stops {
+      station_code: "ASHEN-GATE"
+      platform: 5
+      dwell_minutes: 0
+    }
+  }
+  telemetry {
+    gateway_address: "fd31:7c2e:9100::441"
+    sample_period_seconds: 60
+    certificate_bundle: "/opt/silver-meridian/telemetry/night-freight-441.pem"
+  }
+}
+
+# LOCAL-028
+service {
+  service_id: "LOCAL-028"
+  route_name: "Meadow Local"
+  direction: DIRECTION_EAST
+  priority: 3
+  origin_station: "IRON-MEADOW"
+  destination_station: "BRIAR-POINT"
+  consist {
+    locomotive {
+      fleet_number: "E-053"
+      model: "Ember-2"
+      traction_mode: TRACTION_BATTERY
+      commissioned_year: 2024
+    }
+    passenger_cars: 2
+    dining_car: false
+    accessibility_car: true
+  }
+  timetable {
+    departure_local: "15:45"
+    arrival_local: "16:37"
+    operating_days: "SATURDAY,SUNDAY"
+    stops {
+      station_code: "IRON-MEADOW"
+      platform: 1
+      dwell_minutes: 3
+    }
+    stops {
+      station_code: "BRIAR-POINT"
+      platform: 3
+      dwell_minutes: 0
+    }
+  }
+  telemetry {
+    gateway_address: "fd31:7c2e:9100::28"
+    sample_period_seconds: 25
+    certificate_bundle: "/opt/silver-meridian/telemetry/local-028.pem"
+  }
+}
+
