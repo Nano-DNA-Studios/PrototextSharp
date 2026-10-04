@@ -14,7 +14,7 @@ jobs:
       - name: Install .NET to Device
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "8.x.x"
+          dotnet-version: "9.x.x"
 
       - name: Clone and Checkout the Repo
         uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
           clean: true
 
       - name: Run .NET Restore to reload NuGet Packages
-        run: dotnet restore 
+        run: dotnet restore
 
   test:
     needs: setup
