@@ -1,21 +1,164 @@
-MIT License
+NanoDNA Community License 1.0
 
-Copyright (c) 2026 MrDNAlex
+Copyright (c) 2026 NanoDNA Studios
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This license governs the materials identified as licensed under it in the relevant project repository, distribution, or accompanying notice. It does not replace any separate license that applies to third-party materials.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This license is source-available and is not an OSI-approved open-source license. It permits qualifying individuals, hobbyists, and small businesses to use and distribute the Software under the conditions below. Certain businesses and projects must obtain a separate commercial license.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+1. Definitions
+
+1.1 “Licensor” means NanoDNA Studios.
+
+1.2 “Software” means the original software and other materials owned by the Licensor and identified as covered by this license, including source code, object code, documentation, examples, scripts, configuration files, and original assets.
+
+“Software” does not include third-party software, assets, or other materials that are separately identified or licensed. Third-party materials remain subject to their own license terms.
+
+1.3 “Project” means the product, application, service, internal system, or other activity that uses, incorporates, distributes, or is operated using the Software.
+
+1.4 “Business” means a company, corporation, partnership, or other for-profit legal entity, and includes a Project owned, controlled, or operated by such an entity.
+
+1.5 “Related Entity” means an entity that controls, is controlled by, or is under common control with a Business. “Control” includes direct or indirect ownership or other power to direct the entity’s management or operations.
+
+1.6 “People” means employees and contractors working for or on behalf of the Business or its Related Entities. Part-time employees and contractors count as one person each; they are not prorated based on hours worked.
+
+1.7 “Project Revenue” means gross revenue received during the preceding rolling twelve-month period that is attributable to the Project, including revenue from sales, subscriptions, paid features, advertising, sponsorships, or paid services connected with the Project. Project Revenue is calculated before expenses and excludes sales taxes collected for remittance and amounts refunded to customers.
+
+1.8 “Qualifying Small Business” means a Business that:
+
+a. has no more than 20 People when counted across the Business and its Related Entities; and
+
+b. operates a Project with no more than USD $10,000 in Project Revenue during the preceding rolling twelve-month period.
+
+A Business qualifies only while it meets both conditions.
+
+1.9 “Institutional User” means a nonprofit organization, school, college, university, research institution, researcher acting on behalf of an institution, government agency, or other public-sector organization.
+
+1.10 “You” means the individual or entity exercising rights under this license.
+
+2. Community License Grant
+
+Subject to this license, the Licensor grants You a worldwide, non-exclusive, royalty-free license to use, reproduce, modify, create derivative works of, display, perform, and distribute the Software if You are:
+
+a. an individual using the Software for personal, hobby, educational, or research purposes outside the work or operations of a Business or Institutional User; or
+
+b. a Qualifying Small Business.
+
+These rights include publishing and distributing applications or products that use the Software, including for payment, provided that You continue to meet the applicable eligibility conditions and comply with this license.
+
+This grant does not authorize use on behalf of a Business that exceeds either threshold in Section 3, or by an Institutional User without the separate authorization described in Section 4.
+
+3. Business and Project Thresholds
+
+A Business must obtain a separate commercial license if either of the following conditions is met:
+
+a. the Business and its Related Entities have more than 20 People; or
+
+b. the Project has more than USD $10,000 in Project Revenue during the preceding rolling twelve-month period.
+
+The People threshold applies to the Business and its Related Entities as a whole, not only to the team working on the Project. The Project Revenue threshold applies to the Project, not to the Business’s unrelated projects.
+
+A Business that meets either threshold is not a Qualifying Small Business, even if it remains below the other threshold.
+
+4. Institutional Users
+
+An Institutional User must contact the Licensor and obtain written licensing authorization before using the Software. The Licensor may decide case by case whether the authorization is free or requires payment, and may set additional conditions in writing.
+
+An Institutional User that contacts the Licensor to request authorization may use the Software while its request is awaiting a response and while the parties are actively negotiating in good faith, subject to the conditions in Section 5.
+
+5. Transition to Commercial Licensing
+
+5.1 A Business that becomes subject to Section 3 may continue using the Software for 30 calendar days beginning on the date it first exceeds either threshold. During that period, the Business must contact the Licensor in writing to request a commercial license.
+
+5.2 If the Business contacts the Licensor within that 30-day period and the Licensor has not responded, the Business may continue using the Software while awaiting the Licensor’s response.
+
+5.3 After the Licensor responds, the Business may continue using the Software while the parties are actively negotiating in good faith. This temporary permission ends when a commercial license is signed, either party states in writing that negotiations have ended, or the Business stops participating in negotiations.
+
+5.4 If the Business does not contact the Licensor within the 30-day period, or temporary permission under Sections 5.2 or 5.3 ends without a commercial license, the Business must stop all use of the Software that requires a commercial license.
+
+5.5 No commercial license is granted unless it is set out in a separate written agreement signed or otherwise expressly accepted by the Licensor.
+
+6. Commercial Licenses and Additional Services
+
+Commercial license terms, including fees, scope, duration, and permitted use, will be set out in a separate written agreement between the Business and the Licensor.
+
+The parties may also agree separately on additional development, custom features, support, consulting, maintenance, or other services. Such services are not included in this license unless a separate written agreement says they are.
+
+7. Distribution Conditions
+
+You may distribute the Software or modified versions of it only when Your use is permitted by this license or by a separate written commercial license.
+
+When distributing the Software, You must:
+
+a. include a copy of this license;
+
+b. retain all copyright, license, and other legal notices included with the Software;
+
+c. identify material changes You made, where reasonably practicable; and
+
+d. preserve applicable third-party notices and comply with the applicable third-party licenses.
+
+You may not state or imply that the Licensor endorses You, Your product, or Your changes without written permission.
+
+8. Third-Party Materials
+
+This license applies only to materials owned by the Licensor and identified as covered by it. Third-party software, libraries, assets, fonts, media, data, models, and other materials are excluded unless the Licensor expressly identifies them as covered.
+
+Third-party materials remain subject to their own license terms. If third-party terms conflict with this license, the third-party terms govern the use of those materials.
+
+9. Contributions
+
+A contribution is not automatically accepted into the Software or licensed to the Licensor merely because it is submitted or discussed.
+
+Before a contribution is incorporated, the contributor and Licensor must agree in writing on the applicable copyright permissions, credit, payment or revenue sharing, and any other contribution terms. Unless a separate written agreement says otherwise, a contributor retains ownership of their contribution.
+
+The Licensor may identify contributors as authors in project documentation or notices where appropriate and consistent with the parties’ written agreement.
+
+10. Patent Rights
+
+This license does not contain an express patent license. Patent-related rights and obligations, including any patent license needed for the Software or contributions, should be addressed in a separate written agreement or in a future revision prepared with legal advice.
+
+11. Trademarks
+
+This license does not grant permission to use the Licensor’s names, trademarks, logos, or branding, except to make accurate factual statements identifying the origin of the Software.
+
+12. Ownership
+
+The Software is licensed, not sold. The Licensor retains all rights in the Software that are not expressly granted by this license or a separate written agreement.
+
+13. Compliance Notices and Cure Period
+
+If the Licensor sends You written notice identifying a violation of this license, You have seven calendar days from the date the notice is sent to cure the violation.
+
+If You do not cure the violation within that period, Your rights under this license terminate automatically. The Licensor may reinstate those rights in writing.
+
+The temporary permissions in Sections 5.2 and 5.3 are not violations of this license while their conditions are met.
+
+14. No Warranty
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SOFTWARE IS PROVIDED “AS IS,” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NON-INFRINGEMENT.
+
+THE LICENSOR DOES NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE, SECURE, UNINTERRUPTED, OR SUITABLE FOR YOUR PURPOSES.
+
+15. Limitation of Liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE LICENSOR AND CONTRIBUTORS WILL NOT BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OF OR INABILITY TO USE THE SOFTWARE, WHETHER IN CONTRACT, TORT, OR OTHERWISE.
+
+THIS INCLUDES DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES; LOSS OF PROFITS, REVENUE, DATA, OR BUSINESS; BUSINESS INTERRUPTION; SECURITY INCIDENTS; SYSTEM FAILURE; OR COSTS OF SUBSTITUTE GOODS OR SERVICES.
+
+16. Governing Law and Courts
+
+This license is governed by the laws of the Province of Ontario and the applicable laws of Canada, without regard to conflict-of-law rules.
+
+The parties submit to the courts located in Ontario, Canada, for disputes arising from or relating to this license or the Software, subject to any mandatory rights or rules that apply by law.
+
+17. Changes to This License
+
+The Licensor may publish updated license terms for future versions of the Software. Unless a separate written agreement says otherwise, a version of the Software received under this license remains governed by the license terms supplied with that version.
+
+18. Contact
+
+For commercial licensing, institutional licensing, or questions about this license, contact:
+
+NanoDNA Studios
+Mr.DNAlexandre@gmail.com
