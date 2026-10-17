@@ -58,21 +58,4 @@ jobs:
       - name: Build as Standalone Source
         shell: bash
         run: dotnet build ${{ github.event.repository.name }}/${{ github.event.repository.name }}.csproj -c Release --self-contained true
-
-  upload-source:
-    runs-on: ["self-hosted", "run-${{github.run_id}}"]
-    needs: [build-source, version]
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-      - name: Compress Standalone Source
-        shell: bash
-        run: tar -czf ./nupkg/${{ github.event.repository.name }}-${{ needs.version.outputs.version }}.tar.gz -C ${{ github.event.repository.name }}/bin/Release/netstandard2.1 .
-
-      - name: Upload Standalone Source
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ github.event.repository.name }}-${{ needs.version.outputs.version }}.tar.gz
-          path: ./nupkg/${{ github.event.repository.name }}-${{ needs.version.outputs.version }}.tar.gz
-          retention-days: 1
           
