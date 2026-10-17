@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using NLog;
 
 namespace PrototextSharp
 {
@@ -15,6 +16,8 @@ namespace PrototextSharp
     /// </remarks>
     public class PrototextWriter
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// The text repeated once for each indentation level.
         /// </summary>
@@ -40,14 +43,20 @@ namespace PrototextSharp
         /// <exception cref="NotSupportedException">Thrown when a field contains a value type that cannot be serialized.</exception>
         public string Serialize(ProtoNode node)
         {
+            Logger.Debug("Starting prototext serialization.");
+
             if (node == null)
+            {
+                Logger.Error("The provided Node cannot be null");
                 throw new ArgumentNullException(nameof(node));
+            }
 
             StringBuilder content = new StringBuilder();
-
             SerializeNode(node, content, 0);
 
-            return content.ToString();
+            string result = content.ToString();
+            Logger.Debug("Completed prototext serialization with {0} root fields.", node.Fields.Count);
+            return result;
         }
 
         /// <summary>
@@ -150,9 +159,25 @@ namespace PrototextSharp
                 Enum enumValue =>
                     enumValue.ToString(),
 
-                _ => throw new NotSupportedException(
-                    $"Cannot serialize values of type '{value.GetType().FullName}'.")
+                _ => throw LogUnsupportedValue(value)
             };
+        }
+
+        /// <summary>
+        /// Creates and logs the exception raised when a value has an unsupported type.
+        /// </summary>
+        /// <param name="value">The non-null value that cannot be serialized.</param>
+        /// <returns>The logged exception to throw.</returns>
+        /// <remarks>
+        /// The value itself is not logged; only its type name is included in the exception message.
+        /// </remarks>
+        private static NotSupportedException LogUnsupportedValue(object value)
+        {
+            NotSupportedException exception = new NotSupportedException(
+                $"Cannot serialize values of type '{value.GetType().FullName}'.");
+
+            Logger.Error(exception, "Cannot serialize a value with an unsupported type.");
+            return exception;
         }
 
         /// <summary>
@@ -175,10 +200,6 @@ namespace PrototextSharp
         /// </summary>
         /// <param name="layer">The zero-based indentation level.</param>
         /// <returns>The configured indentation text repeated once for each level.</returns>
-        private string GetIndent(int layer)
-        {
-            return string.Concat(
-                Enumerable.Repeat(_indentText, layer));
-        }
+        private string GetIndent(int layer) => string.Concat(Enumerable.Repeat(_indentText, layer));
     }
 }

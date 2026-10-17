@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using NLog;
 
 namespace PrototextSharp
 {
@@ -13,6 +14,8 @@ namespace PrototextSharp
     /// </remarks>
     public class PrototextParser
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private PrototextLexer _lexer = null!;
 
         private Token _current = null!;
@@ -30,14 +33,24 @@ namespace PrototextSharp
         /// <exception cref="OverflowException">Thrown when an integer value is outside the range of <see cref="long"/>.</exception>
         public ProtoNode Parse(string text)
         {
-            _lexer = new PrototextLexer(text);
-            _current = _lexer.NextToken();
+            Logger.Debug("Starting prototext parse.");
 
-            ProtoNode root = ParseMessage();
+            try
+            {
+                _lexer = new PrototextLexer(text);
+                _current = _lexer.NextToken();
 
-            Expect(TokenType.End);
+                ProtoNode root = ParseMessage();
+                Expect(TokenType.End);
 
-            return root;
+                Logger.Debug("Completed prototext parse with {0} root fields.", root.Fields.Count);
+                return root;
+            }
+            catch (Exception exception)
+            {
+                Logger.Error(exception, "Prototext parse failed.");
+                throw;
+            }
         }
 
         /// <summary>
@@ -69,7 +82,8 @@ namespace PrototextSharp
 
                     object? value = ParseValue();
 
-                    node.Add(fieldName, value);
+                    if (value != null)
+                        node.Add(fieldName, value);
                 }
             }
 
@@ -119,7 +133,11 @@ namespace PrototextSharp
         private Token Expect(TokenType type)
         {
             if (_current.Type != type)
+            {
+                Logger.Error($"Expected {type} but found {_current.Type}.");
                 throw new FormatException($"Expected {type} but found {_current.Type}.");
+            }
+                
 
             Token token = _current;
             Advance();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using NLog;
 
 namespace PrototextSharp
 {
@@ -8,6 +9,8 @@ namespace PrototextSharp
     /// </summary>
     internal class PrototextLexer
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly string _text;
 
         private int _position;
@@ -63,6 +66,7 @@ namespace PrototextSharp
             if (IsIdentifierStart(c))
                 return ReadIdentifierOrBoolean();
 
+            Logger.Debug("Lexing failed at position {0} due to an unexpected character.", _position);
             throw new FormatException($"Unexpected character '{c}' at position {_position}.");
         }
 
@@ -133,6 +137,7 @@ namespace PrototextSharp
                 builder.Append(c);
             }
 
+            Logger.Debug("Lexing failed at position {0} due to an unterminated string literal.", _position);
             throw new FormatException("Unterminated string literal.");
         }
 
@@ -196,8 +201,6 @@ namespace PrototextSharp
                 return new Token(TokenType.Boolean, value);
 
             return new Token(TokenType.Identifier, value);
-
-
         }
 
         /// <summary>
