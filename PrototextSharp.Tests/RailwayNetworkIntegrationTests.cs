@@ -1,5 +1,8 @@
 namespace PrototextSharp.Tests;
 
+/// <summary>
+/// Verifies parsing and extraction of representative data from the railway network fixture.
+/// </summary>
 public class RailwayNetworkIntegrationTests
 {
     private ProtoNode _root = null!;
@@ -137,11 +140,21 @@ public class RailwayNetworkIntegrationTests
         });
     }
 
+    /// <summary>
+    /// Finds the parsed service with the specified identifier.
+    /// </summary>
+    /// <param name="serviceId">The service identifier to find.</param>
+    /// <returns>The matching service node.</returns>
     private ProtoNode FindService(string serviceId)
     {
         return _services.Single(service => GetServiceId(service) == serviceId);
     }
 
+    /// <summary>
+    /// Gets the service identifier from a parsed service node.
+    /// </summary>
+    /// <param name="service">The service node to inspect.</param>
+    /// <returns>The service identifier as a string.</returns>
     private static string GetServiceId(ProtoNode service)
     {
         return (string)service["service_id"]!;

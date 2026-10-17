@@ -2,6 +2,9 @@ using System.Globalization;
 
 namespace PrototextSharp.Tests;
 
+/// <summary>
+/// Verifies successful parsing of supported prototext values and message structures.
+/// </summary>
 public class PrototextParserTests
 {
     private PrototextParser _parser = null!;

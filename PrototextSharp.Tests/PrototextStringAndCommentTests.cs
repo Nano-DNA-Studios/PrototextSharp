@@ -1,5 +1,8 @@
 namespace PrototextSharp.Tests;
 
+/// <summary>
+/// Verifies quoted string, escape sequence, and line comment parsing behavior.
+/// </summary>
 public class PrototextStringAndCommentTests
 {
     private readonly PrototextParser _parser = new();

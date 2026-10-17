@@ -1,5 +1,8 @@
 namespace PrototextSharp.Tests;
 
+/// <summary>
+/// Verifies field storage and lookup behavior in <see cref="ProtoNode"/>.
+/// </summary>
 public class ProtoNodeTests
 {
     /// <summary>

@@ -2,8 +2,14 @@ using System.Globalization;
 
 namespace PrototextSharp.Tests;
 
+/// <summary>
+/// Verifies prototext serialization, formatting, supported values, and round-trip behavior.
+/// </summary>
 public class PrototextWriterTests
 {
+    /// <summary>
+    /// Provides an enum value for testing enum serialization.
+    /// </summary>
     private enum WriterState
     {
         Ready

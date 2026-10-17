@@ -1,5 +1,8 @@
 namespace PrototextSharp.Tests;
 
+/// <summary>
+/// Verifies parser errors and characterized edge-case behavior for invalid input.
+/// </summary>
 public class PrototextParserErrorTests
 {
     private readonly PrototextParser _parser = new();
