@@ -4,25 +4,20 @@ public class PrototextParserErrorTests
 {
     private readonly PrototextParser _parser = new();
 
-    private static IEnumerable<TestCaseData> InvalidSyntaxCases()
-    {
-        yield return new TestCaseData(": 1", "Expected Identifier but found Colon").SetName("Missing field name");
-        yield return new TestCaseData("name 1", "Expected Colon but found Number").SetName("Missing colon");
-        yield return new TestCaseData("name:", "Expected value but found End").SetName("Missing value");
-        yield return new TestCaseData("child { name: 1", "Expected CloseBrace but found End").SetName("Missing close brace");
-        yield return new TestCaseData("}", "Expected End but found CloseBrace").SetName("Extra close brace");
-        yield return new TestCaseData("name: { value: 1 }", "Expected value but found OpenBrace").SetName("Colon before nested message");
-        yield return new TestCaseData("name: 1 extra", "Expected Colon but found End").SetName("Extra identifier after value");
-        yield return new TestCaseData("name: true false", "Expected Identifier but found Boolean").SetName("Extra boolean after value");
-        yield return new TestCaseData("name: 1e3", "Expected Colon but found End").SetName("Unsupported exponent notation");
-    }
-
     /// <summary>
     /// Verifies that invalid grammar produces a format error describing the expected and actual token types.
     /// </summary>
     /// <param name="input">The invalid prototext to parse.</param>
     /// <param name="expectedMessage">The expected error message without its final period.</param>
-    [TestCaseSource(nameof(InvalidSyntaxCases))]
+    [TestCase(": 1", "Expected Identifier but found Colon", TestName = "Missing field name")]
+    [TestCase("name 1", "Expected Colon but found Number", TestName = "Missing colon")]
+    [TestCase("name:", "Expected value but found End", TestName = "Missing value")]
+    [TestCase("child { name: 1", "Expected CloseBrace but found End", TestName = "Missing close brace")]
+    [TestCase("}", "Expected End but found CloseBrace", TestName = "Extra close brace")]
+    [TestCase("name: { value: 1 }", "Expected value but found OpenBrace", TestName = "Colon before nested message")]
+    [TestCase("name: 1 extra", "Expected Colon but found End", TestName = "Extra identifier after value")]
+    [TestCase("name: true false", "Expected Identifier but found Boolean", TestName = "Extra boolean after value")]
+    [TestCase("name: 1e3", "Expected Colon but found End", TestName = "Unsupported exponent notation")]
     public void Parse_InvalidGrammar_ThrowsDescriptiveFormatException(string input, string expectedMessage)
     {
         FormatException? exception = Assert.Throws<FormatException>(() => _parser.Parse(input));
