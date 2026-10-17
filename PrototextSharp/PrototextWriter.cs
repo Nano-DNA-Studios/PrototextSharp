@@ -16,6 +16,9 @@ namespace PrototextSharp
     /// </remarks>
     public class PrototextWriter
     {
+        /// <summary>
+        /// Writes writer diagnostics through the NLog configuration supplied by the consuming application.
+        /// </summary>
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
@@ -102,16 +105,25 @@ namespace PrototextSharp
             content.Append(indent);
             content.Append(key);
             content.Append(": ");
-            content.AppendLine(SerializeValue(value));
+            content.AppendLine(SerializeValue(value, key, layer));
         }
 
         /// <summary>
-        /// Converts a supported scalar value into its invariant prototext representation.
+        /// Converts a supported scalar value into its prototext representation.
         /// </summary>
-        /// <param name="value">The scalar value to serialize.</param>
-        /// <returns>The serialized scalar value.</returns>
-        /// <exception cref="NotSupportedException">Thrown when the value type is not supported.</exception>
-        private static string SerializeValue(object? value)
+        /// <param name="value">The scalar value to serialize; <see langword="null"/> is serialized as <c>null</c>.</param>
+        /// <param name="fieldName">The field name associated with the value, used to identify serialization failures in logs.</param>
+        /// <param name="layer">The zero-based nesting level of the field, used to identify serialization failures in logs.</param>
+        /// <returns>
+        /// The value encoded as prototext. Strings are quoted and escaped; Booleans use lowercase literals;
+        /// byte, sbyte, short, ushort, int, uint, long, ulong, float, double, and decimal values use
+        /// invariant culture; enums use their names; and null is written as the bare text <c>null</c>.
+        /// </returns>
+        /// <exception cref="NotSupportedException">
+        /// Thrown when <paramref name="value"/> is non-null and its type is not one of the supported scalar types.
+        /// The exception is logged with the field name, nesting level, and unsupported type; the value itself is not logged.
+        /// </exception>
+        private static string SerializeValue(object? value, string fieldName, int layer)
         {
             return value switch
             {
@@ -159,24 +171,34 @@ namespace PrototextSharp
                 Enum enumValue =>
                     enumValue.ToString(),
 
-                _ => throw LogUnsupportedValue(value)
+                _ => throw LogUnsupportedValue(value!, fieldName, layer)
             };
         }
 
         /// <summary>
-        /// Creates and logs the exception raised when a value has an unsupported type.
+        /// Creates and logs the exception raised when a field contains a value with an unsupported type.
         /// </summary>
         /// <param name="value">The non-null value that cannot be serialized.</param>
-        /// <returns>The logged exception to throw.</returns>
+        /// <param name="fieldName">The name of the field containing the unsupported value.</param>
+        /// <param name="layer">The zero-based nesting level of the field.</param>
+        /// <returns>The exception to throw after logging the serialization failure.</returns>
         /// <remarks>
-        /// The value itself is not logged; only its type name is included in the exception message.
+        /// The log records the field name, nesting level, and value type, but never the value itself.
+        /// The caller throws the returned exception so the original serialization failure remains visible to callers.
         /// </remarks>
-        private static NotSupportedException LogUnsupportedValue(object value)
+        private static NotSupportedException LogUnsupportedValue(object value, string fieldName, int layer)
         {
+            string valueType = value.GetType().FullName ?? value.GetType().Name;
             NotSupportedException exception = new NotSupportedException(
-                $"Cannot serialize values of type '{value.GetType().FullName}'.");
+                $"Cannot serialize value of type '{valueType}' in field '{fieldName}'.");
 
-            Logger.Error(exception, "Cannot serialize a value with an unsupported type.");
+            Logger.Error(
+                exception,
+                "Cannot serialize field '{0}' at nesting level {1}: value type '{2}' is unsupported.",
+                fieldName,
+                layer,
+                valueType);
+
             return exception;
         }
 

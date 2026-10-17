@@ -14,10 +14,19 @@ namespace PrototextSharp
     /// </remarks>
     public class PrototextParser
     {
+        /// <summary>
+        /// Writes parser diagnostics through the NLog configuration supplied by the consuming application.
+        /// </summary>
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// The lexer processing the input for the current <see cref="Parse(string)"/> operation.
+        /// </summary>
         private PrototextLexer _lexer = null!;
 
+        /// <summary>
+        /// The lookahead token currently being examined by the parser.
+        /// </summary>
         private Token _current = null!;
 
         /// <summary>

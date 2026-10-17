@@ -9,10 +9,19 @@ namespace PrototextSharp
     /// </summary>
     internal class PrototextLexer
     {
+        /// <summary>
+        /// Writes lexer diagnostics through the NLog configuration supplied by the consuming application.
+        /// </summary>
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// The complete prototext input being tokenized.
+        /// </summary>
         private readonly string _text;
 
+        /// <summary>
+        /// The zero-based index of the next input character to process.
+        /// </summary>
         private int _position;
 
         /// <summary>
