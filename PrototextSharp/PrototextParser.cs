@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using NLog;
 
 namespace PrototextSharp
 {
@@ -13,8 +14,19 @@ namespace PrototextSharp
     /// </remarks>
     public class PrototextParser
     {
+        /// <summary>
+        /// Writes parser diagnostics through the NLog configuration supplied by the consuming application.
+        /// </summary>
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
+        /// <summary>
+        /// The lexer processing the input for the current <see cref="Parse(string)"/> operation.
+        /// </summary>
         private PrototextLexer _lexer = null!;
 
+        /// <summary>
+        /// The lookahead token currently being examined by the parser.
+        /// </summary>
         private Token _current = null!;
 
         /// <summary>
@@ -30,14 +42,24 @@ namespace PrototextSharp
         /// <exception cref="OverflowException">Thrown when an integer value is outside the range of <see cref="long"/>.</exception>
         public ProtoNode Parse(string text)
         {
-            _lexer = new PrototextLexer(text);
-            _current = _lexer.NextToken();
+            Logger.Debug("Starting prototext parse.");
 
-            ProtoNode root = ParseMessage();
+            try
+            {
+                _lexer = new PrototextLexer(text);
+                _current = _lexer.NextToken();
 
-            Expect(TokenType.End);
+                ProtoNode root = ParseMessage();
+                Expect(TokenType.End);
 
-            return root;
+                Logger.Debug("Completed prototext parse with {0} root fields.", root.Fields.Count);
+                return root;
+            }
+            catch (Exception exception)
+            {
+                Logger.Error(exception, "Prototext parse failed.");
+                throw;
+            }
         }
 
         /// <summary>
@@ -81,7 +103,7 @@ namespace PrototextSharp
         /// </summary>
         /// <returns>The parsed string, Boolean, integer, decimal, or identifier value.</returns>
         /// <exception cref="FormatException">Thrown when the current token cannot be used as a scalar value.</exception>
-        private object? ParseValue()
+        private object ParseValue()
         {
             Token token = _current;
 
@@ -119,7 +141,9 @@ namespace PrototextSharp
         private Token Expect(TokenType type)
         {
             if (_current.Type != type)
+            {
                 throw new FormatException($"Expected {type} but found {_current.Type}.");
+            }
 
             Token token = _current;
             Advance();
