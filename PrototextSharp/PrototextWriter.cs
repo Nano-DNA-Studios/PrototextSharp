@@ -7,8 +7,12 @@ using System.Text;
 namespace PrototextSharp
 {
     /// <summary>
-    /// Serializes <see cref="ProtoNode"/> hierarchies into prototext documents.
+    /// Serializes <see cref="ProtoNode"/> hierarchies into prototext text.
     /// </summary>
+    /// <remarks>
+    /// The writer preserves field and repeated-value enumeration order. Its supported scalar
+    /// values are strings, Booleans, numeric CLR types, enums, and <see langword="null"/>.
+    /// </remarks>
     public class PrototextWriter
     {
         /// <summary>
@@ -17,9 +21,10 @@ namespace PrototextSharp
         private readonly string _indentText;
 
         /// <summary>
-        /// Initializes a new writer with the specified indentation text.
+        /// Initializes a new writer with the text used at each indentation level.
         /// </summary>
         /// <param name="indentText">The text to emit for each indentation level.</param>
+        /// <remarks>A null indentation value is not validated by the constructor.</remarks>
         public PrototextWriter(string indentText = " ")
         {
             _indentText = indentText;
@@ -30,6 +35,7 @@ namespace PrototextSharp
         /// </summary>
         /// <param name="node">The root node to serialize.</param>
         /// <returns>A prototext document representing the supplied node hierarchy.</returns>
+        /// <remarks>The returned document ends each emitted line with the platform newline.</remarks>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="node"/> is null.</exception>
         /// <exception cref="NotSupportedException">Thrown when a field contains a value type that cannot be serialized.</exception>
         public string Serialize(ProtoNode node)

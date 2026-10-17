@@ -4,8 +4,13 @@ using System.Globalization;
 namespace PrototextSharp
 {
     /// <summary>
-    /// Parses prototext input into a hierarchy of <see cref="ProtoNode"/> instances.
+    /// Parses supported prototext input into a hierarchy of <see cref="ProtoNode"/> instances.
     /// </summary>
+    /// <remarks>
+    /// The parser supports nested messages, quoted strings, lowercase Boolean literals,
+    /// integer and decimal numbers, bare identifiers, and hash or double-slash line comments.
+    /// It does not claim full conformance with every Protobuf Text Format feature.
+    /// </remarks>
     public class PrototextParser
     {
         private PrototextLexer _lexer = null!;
@@ -17,6 +22,10 @@ namespace PrototextSharp
         /// </summary>
         /// <param name="text">The prototext content to parse.</param>
         /// <returns>The root node containing the fields parsed from the document.</returns>
+        /// <remarks>
+        /// Integer literals are returned as <see cref="long"/> and decimal literals as
+        /// <see cref="double"/>. Bare identifiers are returned as strings.
+        /// </remarks>
         /// <exception cref="FormatException">Thrown when the input contains invalid prototext syntax or values.</exception>
         /// <exception cref="OverflowException">Thrown when an integer value is outside the range of <see cref="long"/>.</exception>
         public ProtoNode Parse(string text)
