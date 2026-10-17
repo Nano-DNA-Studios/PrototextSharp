@@ -12,15 +12,15 @@ public class PrototextParserErrorTests
     /// </summary>
     /// <param name="input">The invalid prototext to parse.</param>
     /// <param name="expectedMessage">The expected error message without its final period.</param>
-    [TestCase(": 1", "Expected Identifier but found Colon", TestName = "Missing field name")]
-    [TestCase("name 1", "Expected Colon but found Number", TestName = "Missing colon")]
-    [TestCase("name:", "Expected value but found End", TestName = "Missing value")]
-    [TestCase("child { name: 1", "Expected CloseBrace but found End", TestName = "Missing close brace")]
-    [TestCase("}", "Expected End but found CloseBrace", TestName = "Extra close brace")]
-    [TestCase("name: { value: 1 }", "Expected value but found OpenBrace", TestName = "Colon before nested message")]
-    [TestCase("name: 1 extra", "Expected Colon but found End", TestName = "Extra identifier after value")]
-    [TestCase("name: true false", "Expected Identifier but found Boolean", TestName = "Extra boolean after value")]
-    [TestCase("name: 1e3", "Expected Colon but found End", TestName = "Unsupported exponent notation")]
+    [TestCase(": 1", "Expected Identifier but found Colon")]
+    [TestCase("name 1", "Expected Colon but found Number")]
+    [TestCase("name:", "Expected value but found End")]
+    [TestCase("child { name: 1", "Expected CloseBrace but found End")]
+    [TestCase("}", "Expected End but found CloseBrace")]
+    [TestCase("name: { value: 1 }", "Expected value but found OpenBrace")]
+    [TestCase("name: 1 extra", "Expected Colon but found End")]
+    [TestCase("name: true false", "Expected Identifier but found Boolean")]
+    [TestCase("name: 1e3", "Expected Colon but found End")]
     public void Parse_InvalidGrammar_ThrowsDescriptiveFormatException(string input, string expectedMessage)
     {
         FormatException? exception = Assert.Throws<FormatException>(() => _parser.Parse(input));
