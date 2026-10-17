@@ -91,8 +91,7 @@ namespace PrototextSharp
 
                     object? value = ParseValue();
 
-                    if (value != null)
-                        node.Add(fieldName, value);
+                    node.Add(fieldName, value);
                 }
             }
 
@@ -104,7 +103,7 @@ namespace PrototextSharp
         /// </summary>
         /// <returns>The parsed string, Boolean, integer, decimal, or identifier value.</returns>
         /// <exception cref="FormatException">Thrown when the current token cannot be used as a scalar value.</exception>
-        private object? ParseValue()
+        private object ParseValue()
         {
             Token token = _current;
 
@@ -143,10 +142,8 @@ namespace PrototextSharp
         {
             if (_current.Type != type)
             {
-                Logger.Error($"Expected {type} but found {_current.Type}.");
                 throw new FormatException($"Expected {type} but found {_current.Type}.");
             }
-                
 
             Token token = _current;
             Advance();
